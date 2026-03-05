@@ -6,9 +6,9 @@ const DEFAULT_URL = 'https://mdmudxzblrseclcweisv.supabase.co';
 const DEFAULT_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1kbXVkeHpibHJzZWNsY3dlaXN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgxNDQ2NDYsImV4cCI6MjA4MzcyMDY0Nn0.0MvPzMk0jUTGy_OF5LpTzxaQYBPypR4lvAVHP3ayD5Q';
 
 export const getSupabaseConfig = () => {
-  // Allow env override, but fallback to hardcoded defaults
-  const envUrl = process.env.SUPABASE_URL;
-  const envKey = process.env.SUPABASE_ANON_KEY;
+  // Allow env override using import.meta.env for Vite
+  const envUrl = import.meta.env.VITE_SUPABASE_URL;
+  const envKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
   
   const localUrl = typeof window !== 'undefined' ? localStorage.getItem('sb_url') : null;
   const localKey = typeof window !== 'undefined' ? localStorage.getItem('sb_key') : null;

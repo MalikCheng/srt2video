@@ -3,7 +3,7 @@ import { StoryboardSegment, VideoStyle, ViralTactic, SrtSubtitle, VideoStatus, A
 
 // Helper to ensure we have the key before making requests
 const getClient = () => {
-  const apiKey = process.env.API_KEY;
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || import.meta.env.GEMINI_API_KEY || import.meta.env.API_KEY;
   if (!apiKey) {
     throw new Error("API Key not found in environment.");
   }
