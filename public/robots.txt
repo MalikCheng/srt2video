@@ -1,5 +1,9 @@
-
+# Robots.txt for SRT2Video
 User-agent: *
 Allow: /
 
+# Sitemaps
 Sitemap: https://srt2video.com/sitemap.xml
+
+# Crawl-delay (optional)
+Crawl-delay: 1
