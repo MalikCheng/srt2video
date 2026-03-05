@@ -1,24 +1,23 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import prerender from 'vite-prerender-plugin';
 import path from 'path';
 
 export default defineConfig({
   plugins: [
     react(),
-    prerender({
-      renderTarget: '#root',
-      prerenderScript: '/prerender.js',
-      routes: ['/'],
-      minify: {
-        collapseWhitespace: true,
-        removeComments: true,
-      },
-    }),
   ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './'),
     },
   },
+  // Build configuration for better SEO
+  build: {
+    // Generate sourcemap for debugging
+    sourcemap: false,
+    // Optimize chunk size
+    chunkSizeWarningLimit: 1000,
+  },
+  // Ensure proper asset handling
+  assetsInclude: ['**/*.svg', '**/*.png', '**/*.jpg'],
 });
