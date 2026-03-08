@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "dev:ssr": "node server/ssr.mjs",
+    "start": "node server/prod.mjs",
     "build": "vite build",
     "build:client": "vite build --outDir dist/client",
     "build:ssr": "vite build --outDir dist/server",
