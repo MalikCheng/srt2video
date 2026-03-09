@@ -18,11 +18,13 @@ const translations = {
   es: { seo: { title: 'SRT2Video', description: 'Convierte SRT a video con IA' } }
 };
 
+import { setupApiRoutes } from './apiRoutes.mjs';
+
 function createServer() {
   const app = express();
-  
+
   app.use(express.json({ limit: '50mb' }));
-  
+
   // CORS
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -31,6 +33,8 @@ function createServer() {
     if (req.method === 'OPTIONS') return res.status(200).end();
     next();
   });
+
+  setupApiRoutes(app);
 
   // In production, serve static files directly
   if (isProduction) {

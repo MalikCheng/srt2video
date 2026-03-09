@@ -4,17 +4,23 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 
+import { setupApiRoutes } from './apiRoutes.mjs';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // Note: In Docker, dist is copied to /app/dist
 const DIST_PATH = path.join(__dirname, 'dist');
 
 const app = express();
 
+app.use(express.json({ limit: '50mb' }));
+
 // Log all requests
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
   next();
 });
+
+setupApiRoutes(app);
 
 // Serve static files from dist/
 app.use(express.static(DIST_PATH));
