@@ -8,9 +8,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const isProduction = process.env.NODE_ENV === 'production';
 const PORT = process.env.PORT || 8080;
 
-// Project paths
+// Project paths - fixed to use dist/ instead of dist/client
 const projectRoot = join(__dirname, '..');
-const distPath = join(projectRoot, 'dist/client');
+const distPath = join(projectRoot, 'dist');
 
 const translations = {
   en: { seo: { title: 'SRT2Video by ViralCut AI', description: 'Transform SRT to video with AI' } },
@@ -38,8 +38,8 @@ function createServer() {
     app.use(express.static(distPath));
   }
 
-  // Fallback to index.html for SPA
-  app.get('*', (req, res) => {
+  // Fallback to index.html for SPA - use regex for Express 5 compatibility
+  app.use((req, res) => {
     if (isProduction) {
       const indexPath = join(distPath, 'index.html');
       if (existsSync(indexPath)) {

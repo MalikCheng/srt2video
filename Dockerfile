@@ -20,4 +20,4 @@ ENV NODE_ENV=production
 
 EXPOSE 8080
 
-CMD ["node", "server/prod.mjs"]
+CMD ["node", "server/ssr.mjs"]
